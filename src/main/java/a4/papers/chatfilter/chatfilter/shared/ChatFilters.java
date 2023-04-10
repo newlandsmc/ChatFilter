@@ -28,6 +28,7 @@ public class ChatFilters {
     }
 
     public Result validResult(String string, Player player) {
+        chatFilter.getLogger().info("[DEBUG] [" + player.getName() + "] - Checking string " + string);
         boolean matched = false;
         boolean matchedSwear = false;
         boolean matchedIP = false;

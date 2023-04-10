@@ -33,6 +33,7 @@ public class SwearChatListener implements EventExecutor, Listener {
     public void onPlayerSwear(AsyncPlayerChatEvent event) {
         Player p = event.getPlayer();
         String chatMessage = ChatColor.stripColor(event.getMessage()).toLowerCase();
+        chatFilter.getLogger().info("[DEBUG] [" + p.getName() + "] - Recieved message \"" + chatMessage + "\"");
         String prefix = "";
         String warnPlayerMessage =  "";
         if (p.hasPermission("chatfilter.bypass") || p.hasPermission("chatfilter.bypass.chat"))
@@ -42,6 +43,7 @@ public class SwearChatListener implements EventExecutor, Listener {
         if (chatFilter.chatPause)
             return;
         Result result = chatFilter.getChatFilters().validResult(chatMessage, p);
+        chatFilter.getLogger().info("[DEBUG] [" + p.getName() + "] - Got result \"" + result + "\"");
         if (result.getResult()) {
             Types type = result.getType();
             String[] stringArray = result.getStringArray();
